@@ -11,36 +11,36 @@
             <!-- ROW 1 -->
             <div class="row" id="row1"> 
                 <div id="screen"></div>
-                <button id="clear">C</button> 
-                <button onclick="calculate()" value='=' class="equals">=</button>    
+                <input type="button" onclick="clear('C')" value='C' id="clear"></input> 
+                <input type="button" onclick="calculate('=')" value='=' class="equals"></input>    
             </div>
             <!-- ROW 2 -->
             <div class="row">
-                <button onclick="processNumber()" value='7' class="number" >7</button>
-                <button onclick="processNumber()" value='8' class="number">8 </button>
-                <button onclick="processNumber()" value='9' class="number">9</button>
-                <button onclick="processOperator()" value='/' class="operator">/</button>
+                <input type="button" onclick="processNumber('7')" value='7' class="number" ></input>
+                <input type="button" onclick="processNumber('8')" value='8' class="number"></input>
+                <input type="button" onclick="processNumber('9')" value='9' class="number"></input>
+                <input type="button" onclick="processOperator('/')" value='/' class="operator"></input>
             </div>
             <!-- ROW 3 -->
             <div class="row">
-                 <button onclick="processNumber()" value='4' class="number">4</button> 
-                <button onclick="processNumber()" value='5' class="number">5</button> 
-                <button onclick="processNumber()" value='6' class="number">6</button>
-                <button onclick="processOperator()" value='*' class="operator">x</button>
+                 <input type="button" onclick="processNumber('4')" value='4' class="number"></input> 
+                <input type="button" onclick="processNumber('5')" value='5' class="number"></input> 
+                <input type="button" onclick="processNumber('6')" value='6' class="number"></input>
+                <input type="button" onclick="processOperator('*')" value='*' class="operator"></input>
             </div>
             <!-- ROW 4 -->
             <div class="row">
-                 <button onclick="processNumber()" value='1' class="number">1</button> 
-                <button onclick="processNumber()" value='2' class="number">2</button> 
-                <button onclick="processNumber()" value='3' class="number">3</button> 
-                <button onclick="processOperator()" value='-' class="operator">-</button>
+                 <input type="button" onclick="processNumber('1')" value='1' class="number"></input> 
+                <input type="button" onclick="processNumber('2')" value='2' class="number"></input> 
+                <input type="button" onclick="processNumber('3')" value='3' class="number"></input> 
+                <input type="button" onclick="processOperator('-')" value='-' class="operator"></input>
             </div>
             <!-- ROW 5 -->
             <div class="row"> 
-                <button onclick="processDecimal()" value='.' id="decimal">.</button>
-                <button onclick="processNumber()" value='0' class="number">0</button>
-                <button onclick="processOperator()" value='+' class="operator">+</button>
-                <button onclick="processOperator()" value='+/-' class="operator" id="toggle-pos-neg">+/-</button>
+                <input type="button" onclick="processDecimal('.')" value='.' id="decimal"></input>
+                <input type="button" onclick="processNumber('0')" value='0' class="number"></input>
+                <input type="button" onclick="processOperator('+')" value='+' class="operator"></input>
+                <input type="button" onclick="processOperator('+/-')" value='+/-' class="operator" id="toggle-pos-neg"></input>
             </div>
         </div>
     </body>
