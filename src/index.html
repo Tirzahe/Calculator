@@ -8,63 +8,39 @@
     </head>
     <body>
         <div class="box">
-            <div class="row" id="row1">
-                <button id="clear">C
-                </button>
-                
-                <textarea id="screen">
-                </textarea>    
+            <!-- ROW 1 -->
+            <div class="row" id="row1"> 
+                <div id="screen"></div>
+                <button id="clear">C</button> 
+                <button onclick="calculate()" value='=' class="equals">=</button>    
             </div>
+            <!-- ROW 2 -->
             <div class="row">
-                <button>
-                </button> 
-                <button>
-                </button> 
-                <button>
-                </button> 
-                <button class="operator">= 
-                </button>
+                <button onclick="processNumber()" value='7' class="number" >7</button>
+                <button onclick="processNumber()" value='8' class="number">8 </button>
+                <button onclick="processNumber()" value='9' class="number">9</button>
+                <button onclick="processOperator()" value='/' class="operator">/</button>
             </div>
+            <!-- ROW 3 -->
             <div class="row">
-                <button>7
-                </button>
-                <button>8
-                </button>
-                <button>9
-                </button>
-                <button class="operator">+
-                </button>
+                 <button onclick="processNumber()" value='4' class="number">4</button> 
+                <button onclick="processNumber()" value='5' class="number">5</button> 
+                <button onclick="processNumber()" value='6' class="number">6</button>
+                <button onclick="processOperator()" value='*' class="operator">x</button>
             </div>
+            <!-- ROW 4 -->
             <div class="row">
-                 <button>4
-                </button> 
-                <button>5
-                </button> 
-                <button>6
-                </button> 
-                <button class="operator">-
-                </button>
+                 <button onclick="processNumber()" value='1' class="number">1</button> 
+                <button onclick="processNumber()" value='2' class="number">2</button> 
+                <button onclick="processNumber()" value='3' class="number">3</button> 
+                <button onclick="processOperator()" value='-' class="operator">-</button>
             </div>
-            <div class="row">
-                 <button>1
-                </button> 
-                <button>2
-                </button> 
-                <button>3
-                </button> 
-                <button class="operator">/
-                </button>
-            </div>
-            
-            <div class="row">
-                <button>.
-                </button> 
-                <button>0
-                </button> 
-                <button class="operator" id="toggle-pos-neg">+/-
-                </button> 
-                <button class="operator">x
-                </button>
+            <!-- ROW 5 -->
+            <div class="row"> 
+                <button onclick="processDecimal()" value='.' id="decimal">.</button>
+                <button onclick="processNumber()" value='0' class="number">0</button>
+                <button onclick="processOperator()" value='+' class="operator">+</button>
+                <button onclick="processOperator()" value='+/-' class="operator" id="toggle-pos-neg">+/-</button>
             </div>
         </div>
     </body>
