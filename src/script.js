@@ -1,18 +1,30 @@
+var screen = document.getElementById('screen');
+
 function addToScreen(input) {
-    document.getElementById('screen').innerText += input;
+  screen.innerText += input;
 }
 function setScreen(input){
-    document.getElementById('screen').innerText = input;
-}
+  screen.innerText = input;
+} // needs a test
 function processNumber(input) {
   addToScreen(input);
 }
 function processOperator(input) {
-  setScreen(input);
+  if(lastIndexIsOperator()) {
+    setScreen(screen.innerText.slice(-1) + input);
+  }
+  else{
+    addToScreen(input);
+  }
 }
+function lastIndexIsOperator(){
+  var operators = ['+', '-', '/', '*'] 
+  return operators.includes(screen.innerText[screen.innerText.length-1]);
+}
+function calculate() {
+  setScreen(eval(screen.innerText));
+} // needs a test
 function clear(){
-  //this function will clear the last button pressed from the screen
+  setScreen(0);
 }
-function allClear(){
-  //this function will clear and reset all functioms to zero.
-}
+
