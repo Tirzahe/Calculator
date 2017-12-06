@@ -63,16 +63,39 @@ describe('Calculator', function() {
     it('should evaluate the problem in the screen and return the answer in the screen', function() {
       window.screen.innerText = '8+4';
       calculate();
-      expect(calculate('8+4')).toBe('12');
-      // expect(calculate('8-4')).toBe('4');
-      // expect(calculate('8/4')).toBe('2');
-      // expect(calculate('8*4')).toBe('32');
+      expect(window.screen.innerText).toBe('12');
+      window.screen.innerText = '8-4';
+      calculate();
+      expect(window.screen.innerText).toBe('4');
+      window.screen.innerText = '8/4';
+      calculate();
+      expect(window.screen.innerText).toBe('2');
+      window.screen.innerText = '8*4';
+      calculate();
+      expect(window.screen.innerText).toBe('32');
     });
   });
-  // describe('isNegativeNum()', function() {
-       //it('should identify if number is negative', function() {
+  describe('processKey()', function() {
+    it('should identify which function should be used based on which keyboard key was pressed', function() {
+      
+    });
+  });
+  // describe('processDecimal()', function() {
+       //it('should add deciml to screen if canDecimal variable is true', function() {
   // });
-  // describe('processKey()', function() {
-       //it('should identify which function should be used based on which keyboard key was pressed', function() {
+  // describe('isNegativeNum()', function() {
+  //   it('should identify if number is negative', function() {
+  //     window.screen.innerText = '-1';
+  //     isNegativeNum();
+  //     expect(window.screen.innerText).toBe(true);
+
+  //     window.screen.innerText = '1';
+  //     isNegativeNum();
+  //     expect(window.screen.innerText).toBe(false);
+      
+  //   });
+  // });
+  // describe('numIsZero()', function() {
+       //it('should identify if screen is set to zero', function() {
   // });
 });

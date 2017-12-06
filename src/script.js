@@ -1,6 +1,7 @@
 var screen = document.getElementById('screen');
+var canDecimal = true;
 document.addEventListener('keypress', processKey);
-
+// toggle needs to set screen to remove Zero.
 function addToScreen(input) {
   screen.innerText += input;
 }
@@ -8,8 +9,14 @@ function setScreen(input){
   screen.innerText = input;
 }
 function processNumber(input) {
-  addToScreen(input);
+  if (screenIsZero()){
+    setScreen(input);
+  }
+  else addToScreen(input);
 }
+function processDecimal(){
+  //if (canDecimal === false)
+}// needs test
 function processOperator(input) {
   if(lastIndexIsOperator()) {
     setScreen(screen.innerText.slice(0, -1) + input);
@@ -17,20 +24,25 @@ function processOperator(input) {
   else{
     addToScreen(input);
   }
-}
+  canDecimal = true;
+}//review this code
 function lastIndexIsOperator(){
   var operators = ['+', '-', '/', '*'] 
   return operators.includes(screen.innerText[screen.innerText.length-1]);
 }
 function calculate() {
   setScreen(eval(screen.innerText));
-} // needs a test
-function setToZero(){//clear
+}
+function setToZero(){//browswer didn't like the function name clear
   setScreen(0);
 }
-function isNegativeNum(){
-
-}//needs Test
+// function isNegativeNum(){
+//   var num
+//   return num < 0;
+// }//needs test
 function processKey(event){
-  console.log(event);
+  //console.log(event);
+}//needs test
+function screenIsZero(){
+  return screen.innerText === '0';
 }//needs test
