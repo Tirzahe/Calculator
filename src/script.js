@@ -1,17 +1,18 @@
 var screen = document.getElementById('screen');
+document.addEventListener('keypress', processKey);
 
 function addToScreen(input) {
   screen.innerText += input;
 }
 function setScreen(input){
   screen.innerText = input;
-} // needs a test
+}
 function processNumber(input) {
   addToScreen(input);
 }
 function processOperator(input) {
   if(lastIndexIsOperator()) {
-    setScreen(screen.innerText.slice(-1) + input);
+    setScreen(screen.innerText.slice(0, -1) + input);
   }
   else{
     addToScreen(input);
@@ -24,7 +25,12 @@ function lastIndexIsOperator(){
 function calculate() {
   setScreen(eval(screen.innerText));
 } // needs a test
-function clear(){
+function setToZero(){//clear
   setScreen(0);
 }
+function isNegativeNum(){
 
+}//needs Test
+function processKey(event){
+  console.log(event);
+}//needs test

@@ -7,15 +7,14 @@ describe('Calculator', function() {
     it('should display input in screen', function() {
       spyOn(window, 'addToScreen');
       addToScreen('3');
-      expect(document.getElementById).toHaveBeenCalledWith('screen');
-      expect(window.screen.innerText).toBe('3');
+      expect(addToScreen).toHaveBeenCalledWith('3');
     });
   });
   describe('processNumber', function() {
     it('should display input in screen', function() {
       spyOn(window, 'addToScreen').and.returnValue(null);
-      processNumber(3);
-      expect(addToScreen).toHaveBeenCalledWith(3);
+      processNumber(4);
+      expect(addToScreen).toHaveBeenCalledWith(4);
     });
   });
   describe('processOperator', function(){
@@ -25,7 +24,6 @@ describe('Calculator', function() {
       expect(addToScreen).toHaveBeenCalledWith('+');
     });
     it('should replace last character if operator', function() {
-      spyOn(window, 'setScreen').and.returnValue(null);
       processNumber(0);
       processOperator('+');
       processOperator('-');
@@ -47,17 +45,34 @@ describe('Calculator', function() {
       expect(lastIndexIsOperator()).toBe(false);
     });
   });
-  describe('clear()', function() {
+  describe('setToZero()', function() {
     it('should set the screen to zero', function() {
       window.screen.innerText = '1';
-      clear();
+      setToZero();
       expect(window.screen.innerText).toBe('0');
     });
   });
-  // describe('setScreen()', function() {
-    
+  describe('setScreen()', function() {
+    it('should replace contents of screen with input', function() {
+      window.screen.innerText = '7+7';
+      setScreen('78');
+      expect(window.screen.innerText).toBe('78');
+    });
+  });
+  describe('calculate()', function() {
+    it('should evaluate the problem in the screen and return the answer in the screen', function() {
+      window.screen.innerText = '8+4';
+      calculate();
+      expect(calculate('8+4')).toBe('12');
+      // expect(calculate('8-4')).toBe('4');
+      // expect(calculate('8/4')).toBe('2');
+      // expect(calculate('8*4')).toBe('32');
+    });
+  });
+  // describe('isNegativeNum()', function() {
+       //it('should identify if number is negative', function() {
   // });
-  // describe('calculate()', function() {
-    
+  // describe('processKey()', function() {
+       //it('should identify which function should be used based on which keyboard key was pressed', function() {
   // });
 });
