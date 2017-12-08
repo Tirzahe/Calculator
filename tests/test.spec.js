@@ -29,6 +29,11 @@ describe('Calculator', function() {
       processOperator('-');
       expect(window.screen.innerText).toBe('0-');
     });
+    it('should set canDecimal flag to true', function(){
+      canDecimal = false;
+      processOperator('-');
+      expect(canDecimal).toBe(true);
+    });
   });
   describe('lastIndexIsOperator()', function(){
     it('should check if the last character of the screen.innerText is an operator', function(){
@@ -64,12 +69,15 @@ describe('Calculator', function() {
       window.screen.innerText = '8+4';
       calculate();
       expect(window.screen.innerText).toBe('12');
+      
       window.screen.innerText = '8-4';
       calculate();
       expect(window.screen.innerText).toBe('4');
+     
       window.screen.innerText = '8/4';
       calculate();
       expect(window.screen.innerText).toBe('2');
+      
       window.screen.innerText = '8*4';
       calculate();
       expect(window.screen.innerText).toBe('32');
@@ -80,19 +88,58 @@ describe('Calculator', function() {
       
   //   });
   // });
-  // describe('processDecimal()', function() {
-  //   it('should add deciml to screen if canDecimal variable is true', function() {
+  describe('processDecimal()', function() {
+    it('should add decimal to screen if canDecimal variable is true', function() {
+      window.screen.innerText = '0';
+      processDecimal();
+      expect(window.screen.innerText).toBe('0.');
+      expect(canDecimal).toBe(false);
+
+      window.screen.innerText = '0';
+      processNumber('4');
+      processOperator('+')
+      processDecimal();
+      expect(window.screen.innerText).toBe('4+0.');
+      expect(canDecimal).toBe(false);
       
-  //   });
+      window.screen.innerText = '4.5';
+      processDecimal();
+      expect(window.screen.innerText).toBe('4.5');
+      expect(canDecimal).toBe(false);
+
+      window.screen.innerText = '0';
+      processNumber('4');
+      processDecimal();
+      processNumber('5');
+      processOperator('*');
+      processNumber('2');
+      processDecimal();
+      expect(window.screen.innerText).toBe('4.5*2.');
+      expect(canDecimal).toBe(false);
+
+      window.screen.innerText = '0';
+      processNumber('4');
+      processDecimal();
+      processDecimal();
+      expect(window.screen.innerText).toBe('4.');
+      expect(canDecimal).toBe(false);
+
+      window.screen.innerText = '0';
+      processNumber('4');
+      processDecimal();
+      processNumber('2');
+      processDecimal();
+      expect(window.screen.innerText).toBe('4.2');
+      expect(canDecimal).toBe(false);
+    });
+  });
   // describe('isNegativeNum()', function() {
   //   it('should identify if number is negative', function() {
   //     window.screen.innerText = '-1';
-  //     isNegativeNum();
-  //     expect(window.screen.innerText).toBe(true);
+  //     expect(isNegativeNum()).toBe(true);
 
   //     window.screen.innerText = '1';
-  //     isNegativeNum();
-  //     expect(window.screen.innerText).toBe(false);
+  //     expect(isNegativeNum()).toBe(false);
       
   //   });
   // });

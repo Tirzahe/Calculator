@@ -11,13 +11,21 @@ function setScreen(input){
 function processNumber(input) {
   if (screenIsZero()){
     setScreen(input);
+    canDecimal = true;
   }
   else addToScreen(input);
 }
+
 function processDecimal(){
-  if (screen.innerText)
-  addToScreen(input);
-}// needs test
+  if (canDecimal && lastIndexIsOperator()){
+    addToScreen('0.');
+    canDecimal = false;
+  }
+  else if (canDecimal){
+    addToScreen('.');
+    canDecimal = false;
+  }
+}
 function processOperator(input) {
   if(lastIndexIsOperator()) {
     setScreen(screen.innerText.slice(0, -1) + input);
@@ -26,7 +34,7 @@ function processOperator(input) {
     addToScreen(input);
   }
   canDecimal = true;
-}//review this code
+}
 function lastIndexIsOperator(){
   var operators = ['+', '-', '/', '*'] 
   return operators.includes(screen.innerText[screen.innerText.length-1]);
