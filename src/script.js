@@ -41,6 +41,7 @@ function lastIndexIsOperator(){
 }
 function calculate() {
   setScreen(eval(screen.innerText));
+  canDecimal = true;
 }
 function setToZero(){//browswer didn't like the function name clear
   setScreen(0);
@@ -51,17 +52,28 @@ function setToZero(){//browswer didn't like the function name clear
 // }//needs test
 function processKey(event){
   var keyCode = event.keyCode;
-  var operators = ['56', '187', '189', '191']
+  var operators = [42, 43, 45, 47]
   if (keyCode >= 48 && keyCode <= 57) {
     processNumber(String.fromCharCode(keyCode));
   }
-  // else if (keyCode === 190){
-  //   processDecimal('.');
-  // }
-  // else if (operators.includes(keyCode)) {
-  //   processOperator(String.fromCharCode(keyCode));
-  // }
-}//WORKING ON THIS NOW*
+  else if (keyCode === 46){
+    processDecimal('.');
+  }
+  else if (operators.includes(keyCode)) {
+    processOperator(String.fromCharCode(keyCode));
+  }
+  else if (keyCode === 13 || keyCode === 61){
+    calculate('=');
+  }
+  else if (keyCode === 8){
+    setToZero();
+  }
+  // else if (keyCode === 32 || keyCode === 45) space bar(or minus) is toggle key. How to use minus key to set negative number??.
+  // need test for toggle once toggle function is written.
+  else{
+    return false; // is this the right way to ignore all other keyboard input??
+  }
+}
 function screenIsZero(){
   return screen.innerText === '0';
 }

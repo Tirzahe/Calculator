@@ -32,27 +32,39 @@ describe('Calculator', function() {
       processKey({keyCode:57});
       expect(processNumber).toHaveBeenCalledWith('9');
     });
-    // it('should identify if a decimal was pressed and then use processDecimal function ', function() {
-    //   spyOn(window, 'processDecimal');
-    //   processKey({keyCode:190});
-    //   expect(processDecimal).toHaveBeenCalledWith('.');
-    // }); // WORKING ON THIS ONE!!!!
+    it('should identify if a decimal was pressed and then use processDecimal function ', function() {
+      spyOn(window, 'processDecimal');
+      processKey({keyCode:46});
+      expect(processDecimal).toHaveBeenCalledWith('.');
+    });
 
-    // it('should identify if an operator was pressed and then use processOperator function ', function() {
-    //   spyOn(window, 'processOperator');
-    //   processKey({keyCode:187});
-    //   expect(processOperator).toHaveBeenCalledWith('+');
+    it('should identify if an operator was pressed and then use processOperator function ', function() {
+      spyOn(window, 'processOperator');
+      processKey({keyCode:42});
+      expect(processOperator).toHaveBeenCalledWith('*');
 
-    //   processKey({keyCode:187});
-    //   expect(processOperator).toHaveBeenCalledWith('=');
+      processKey({keyCode:43});
+      expect(processOperator).toHaveBeenCalledWith('+');
 
-    //   processKey({keyCode:189});
-    //   expect(processOperator).toHaveBeenCalledWith('-');
+      processKey({keyCode:45});
+      expect(processOperator).toHaveBeenCalledWith('-');
 
-    //   processKey({keyCode:13});
-    //   expect(processOperator).toHaveBeenCalledWith('=');
-    // });
-    
+      processKey({keyCode:47});
+      expect(processOperator).toHaveBeenCalledWith('/');
+    });
+    it('should identify if the "=" or the "enter" keys were pressed then use the calculate function', function() {
+      spyOn(window, 'calculate');
+      processKey({keyCode:13});
+      expect(calculate).toHaveBeenCalledWith('=');
+
+      processKey({keyCode:61});
+      expect(calculate).toHaveBeenCalledWith('=');
+    }); 
+    it ('should identify if the "backspace" key was pressed and use the setToZero function', function(){
+      spyOn(window, 'setToZero');
+      processKey({keyCode:8});
+      expect(setToZero).toHaveBeenCalledWith();
+    });   
   });
   describe('processOperator', function(){
     it('should add operator after number', function() {
