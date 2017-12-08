@@ -15,7 +15,8 @@ function processNumber(input) {
   else addToScreen(input);
 }
 function processDecimal(){
-  //if (canDecimal === false)
+  if (screen.innerText)
+  addToScreen(input);
 }// needs test
 function processOperator(input) {
   if(lastIndexIsOperator()) {
@@ -41,8 +42,8 @@ function setToZero(){//browswer didn't like the function name clear
 //   return num < 0;
 // }//needs test
 function processKey(event){
-  //console.log(event);
+  console.log(event);
 }//needs test
 function screenIsZero(){
   return screen.innerText === '0';
-}//needs test
+}

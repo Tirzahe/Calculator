@@ -75,14 +75,15 @@ describe('Calculator', function() {
       expect(window.screen.innerText).toBe('32');
     });
   });
-  describe('processKey()', function() {
-    it('should identify which function should be used based on which keyboard key was pressed', function() {
+  // describe('processKey()', function() {
+  //   it('should identify which function should be used based on which keyboard key was pressed', function() {
       
-    });
-  });
-  // describe('processDecimal()', function() {
-       //it('should add deciml to screen if canDecimal variable is true', function() {
+  //   });
   // });
+  // describe('processDecimal()', function() {
+  //   it('should add deciml to screen if canDecimal variable is true', function() {
+      
+  //   });
   // describe('isNegativeNum()', function() {
   //   it('should identify if number is negative', function() {
   //     window.screen.innerText = '-1';
@@ -95,7 +96,15 @@ describe('Calculator', function() {
       
   //   });
   // });
-  // describe('numIsZero()', function() {
-       //it('should identify if screen is set to zero', function() {
-  // });
+  describe('screenIsZero()', function() {
+    it('should identify if screen is set to zero', function() {
+      window.screen.innerText = '0';
+      expect(screenIsZero()).toBe(true);
+      
+      window.screen.innerText = '10';
+      expect(screenIsZero()).toBe(false);
+      window.screen.innerText = '0.1';
+      expect(screenIsZero()).toBe(false);
+    });
+  });
 });
