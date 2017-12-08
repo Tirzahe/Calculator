@@ -1,7 +1,7 @@
 var screen = document.getElementById('screen');
 var canDecimal = true;
-document.addEventListener('keypress', processKey);
-// toggle needs to set screen to remove Zero.
+document.addEventListener('onkeypress', processKey);
+// toggle '+/-' needs to setScreen to remove Zero.
 function addToScreen(input) {
   screen.innerText += input;
 }
@@ -50,8 +50,18 @@ function setToZero(){//browswer didn't like the function name clear
 //   return num < 0;
 // }//needs test
 function processKey(event){
-  console.log(event);
-}//needs test
+  var keyCode = event.keyCode;
+  var operators = ['56', '187', '189', '191']
+  if (keyCode >= 48 && keyCode <= 57) {
+    processNumber(String.fromCharCode(keyCode));
+  }
+  // else if (keyCode === 190){
+  //   processDecimal('.');
+  // }
+  // else if (operators.includes(keyCode)) {
+  //   processOperator(String.fromCharCode(keyCode));
+  // }
+}//WORKING ON THIS NOW*
 function screenIsZero(){
   return screen.innerText === '0';
 }

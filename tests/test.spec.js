@@ -17,6 +17,43 @@ describe('Calculator', function() {
       expect(addToScreen).toHaveBeenCalledWith(4);
     });
   });
+  describe('processKey()', function() {
+    it('should identify if a number was pressed and then use processNumber function', function() {
+      spyOn(window, 'processNumber');
+      processKey({keyCode:49});
+      expect(processNumber).toHaveBeenCalledWith('1');
+
+      processKey({keyCode:48});
+      expect(processNumber).toHaveBeenCalledWith('0');
+
+      processKey({keyCode:56});
+      expect(processNumber).toHaveBeenCalledWith('8');
+
+      processKey({keyCode:57});
+      expect(processNumber).toHaveBeenCalledWith('9');
+    });
+    // it('should identify if a decimal was pressed and then use processDecimal function ', function() {
+    //   spyOn(window, 'processDecimal');
+    //   processKey({keyCode:190});
+    //   expect(processDecimal).toHaveBeenCalledWith('.');
+    // }); // WORKING ON THIS ONE!!!!
+
+    // it('should identify if an operator was pressed and then use processOperator function ', function() {
+    //   spyOn(window, 'processOperator');
+    //   processKey({keyCode:187});
+    //   expect(processOperator).toHaveBeenCalledWith('+');
+
+    //   processKey({keyCode:187});
+    //   expect(processOperator).toHaveBeenCalledWith('=');
+
+    //   processKey({keyCode:189});
+    //   expect(processOperator).toHaveBeenCalledWith('-');
+
+    //   processKey({keyCode:13});
+    //   expect(processOperator).toHaveBeenCalledWith('=');
+    // });
+    
+  });
   describe('processOperator', function(){
     it('should add operator after number', function() {
       spyOn(window, 'addToScreen').and.returnValue(null);
@@ -83,11 +120,6 @@ describe('Calculator', function() {
       expect(window.screen.innerText).toBe('32');
     });
   });
-  // describe('processKey()', function() {
-  //   it('should identify which function should be used based on which keyboard key was pressed', function() {
-      
-  //   });
-  // });
   describe('processDecimal()', function() {
     it('should add decimal to screen if canDecimal variable is true', function() {
       window.screen.innerText = '0';
