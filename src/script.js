@@ -43,13 +43,45 @@ function lastIndexIsOperator(){
   return operator.includes(screen.innerText[screen.innerText.length-1]);
 }
 function calculate() {
-  setScreen(eval(screen.innerText));
+  var screenWithParens = parenthesizeScreen();
+  setScreen(eval(screenWithParens));
   if (screen.innerText % 1 !== 0){
     canDecimal = false;
   }
   else {
     canDecimal = true;
   }
+}
+function parenthesizeScreen(){
+  var screenText = screen.innerText;
+  var openParen = false;
+  var screenWithParens = '';
+  for(var i = 0; i < screenText.length; i++){
+    if(i === 0 && screenText[i] === '-'){
+      screenWithParens = '(-';
+      openParen = true;
+    }
+    else if (isOperator(screenText[i])) {
+      if (openParen){
+        screenWithParens += ')' + screenText[i];
+        openParen = false;
+      }
+      else if (isOperator(screenText[i-1])){
+        screenWithParens += '(-';
+        openParen = true;
+      }
+      else {
+        screenWithParens += screenText[i];
+      }
+    }
+    else {
+      screenWithParens += screenText[i];
+    }
+  }
+  if (openParen){
+    screenWithParens += ')';
+  }
+  return screenWithParens; 
 }
 function setToZero(){//browswer didn't like the function name clear
   setScreen(0);

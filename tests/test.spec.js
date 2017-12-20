@@ -55,10 +55,10 @@ describe('Calculator', function() {
     it('should identify if the "=" or the "enter" keys were pressed then use the calculate function', function() {
       spyOn(window, 'calculate');
       processKey({keyCode:13});
-      expect(calculate).toHaveBeenCalledWith('=');
+      expect(calculate).toHaveBeenCalled();
 
       processKey({keyCode:61});
-      expect(calculate).toHaveBeenCalledWith('=');
+      expect(calculate).toHaveBeenCalled();
     }); 
     // it ('should identify if the "backspace" key was pressed and use the setToZero function', function(){
     //   spyOn(window, 'setToZero');
@@ -130,9 +130,33 @@ describe('Calculator', function() {
       window.screen.innerText = '8*4';
       calculate();
       expect(window.screen.innerText).toBe('32');
+
+      window.screen.innerText = '8.5--2';
+      calculate();
+      expect(window.screen.innerText).toBe('10.5');
     });
   });
+  describe('parenthesizeScreen()', function() {
+    it('should identify if number is negative and put parenthesis around it', function() {
+      window.screen.innerText = '4*-1';
+      expect(parenthesizeScreen()).toBe('4*(-1)');
+
+      window.screen.innerText = '-4*-1';
+      expect(parenthesizeScreen()).toBe('(-4)*(-1)');
+
+      window.screen.innerText = '4*-1+1.2--3';
+      expect(parenthesizeScreen()).toBe('4*(-1)+1.2-(-3)');
+
+      window.screen.innerText = '4*-1.542/1.2--3.56';
+      expect(parenthesizeScreen()).toBe('4*(-1.542)/1.2-(-3.56)');
+
+    });
+    
+  });
   describe('processDecimal()', function() {
+    beforeEach (function(){
+      window.canDecimal = true;
+    });
     it('should add decimal to screen if canDecimal variable is true', function() {
       window.screen.innerText = '0';
       processDecimal();
@@ -264,15 +288,15 @@ describe('Calculator', function() {
     it('should identify if character is an Operator', function() {
       
       expect(isOperator('+')).toBe(true);
-     
+
       expect(isOperator('-')).toBe(true);
       
       expect(isOperator('/')).toBe(true);
-     
+      
       expect(isOperator('*')).toBe(true);
-    
+      
       expect(isOperator('0')).toBe(false);
-     
+      
       expect(isOperator('9')).toBe(false);
     });
   });
