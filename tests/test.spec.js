@@ -131,6 +131,10 @@ describe('Calculator', function() {
       calculate();
       expect(window.screen.innerText).toBe('32');
 
+      window.screen.innerText = '8*4+';
+      calculate();
+      expect(window.screen.innerText).toBe('32');
+
       window.screen.innerText = '8.5--2';
       calculate();
       expect(window.screen.innerText).toBe('10.5');

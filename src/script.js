@@ -44,7 +44,13 @@ function lastIndexIsOperator(){
 }
 function calculate() {
   var screenWithParens = parenthesizeScreen();
-  setScreen(eval(screenWithParens));
+  if(isOperator(screenWithParens.charAt(screenWithParens.length-1))){
+    var newScreen = screenWithParens.slice(0, -1);
+    setScreen(eval(newScreen));
+  }
+  else {
+    setScreen(eval(screenWithParens));
+  };
   if (screen.innerText % 1 !== 0){
     canDecimal = false;
   }
